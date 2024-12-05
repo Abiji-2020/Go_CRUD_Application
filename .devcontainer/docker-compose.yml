@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  app:
+    image: golang:latest
+    container_name: go_app
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    ports:
+      - "8080:8080"
+    command: sh -c "go run main.go"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    container_name: redis_server
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
