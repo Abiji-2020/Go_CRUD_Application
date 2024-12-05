@@ -8,17 +8,10 @@ services:
       - .:/workspace
     ports:
       - "8080:8080"
-    depends_on:
-      - redis
+    command: ["tail", "-f", "/dev/null"]
 
   redis:
     image: redis:alpine
     container_name: redis_server
     ports:
       - "6379:6379"
-    command: ["redis-server", "--appendonly", "yes"]
-    volumes:
-      - redis-data:/data
-
-volumes:
-  redis-data:
