@@ -1,23 +1,27 @@
 {
   "name": "Go Microservice Development Environment",
-  "image": "golang:1.21",
+  "image": "golang:latest",
   "forwardPorts": [
-    8080
+    8080,
+    6379
   ],
+  "features": {
+    "ghcr.io/itsmechlark/features/redis-server:1": {}
+  },
   "customizations": {
     "vscode": {
       "settings": {
         "go.formatTool": "goimports",
         "go.lintTool": "golint",
-        "go.useLanguageServer": "on"
+        "go.useLanguageServer": true
       },
       "extensions": [
         "golang.go"
       ]
     }
   },
-  "features":{
-    "ghcr.io/itsmechlark/features/redis-server:1": {}
-  },
-  "postCreateCommand": "go mod tidy"
+  "postCreateCommand": "go mod tidy",
+  "mounts": [
+    "source=/var/lib/redis,target=/data,type=volume"
+  ]
 }
