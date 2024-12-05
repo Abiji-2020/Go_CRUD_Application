@@ -10,5 +10,4 @@ EXPOSE 6379 8080
 # Set the working directory
 WORKDIR /workspace
 
-# Start Redis and keep the container running
-CMD ["sh", "-c", "redis-server --daemonize yes && tail -f /dev/null"]
+
