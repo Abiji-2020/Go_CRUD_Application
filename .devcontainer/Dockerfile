@@ -1,13 +1,28 @@
-# Use the official Go image (Debian-based)
-FROM golang:latest
+FROM ubuntu:22.04
 
-# Install Redis
-RUN apt-get update && apt-get install -y redis-server && apt-get clean
+# Install required packages
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    go \
+    git \
+    sudo \
+    redis
 
-# Expose Redis and application ports
-EXPOSE 6379 8080
+# Create a non-root user (optional)
+ARG USERNAME=vscode
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
 
-# Set the working directory
-WORKDIR /workspace
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
 
+# Switch to the non-root user
+USER $USERNAME
+
+# Set the default working directory
+WORKDIR /workspaces
+
+# [Optional] Install additional tools or dependencies
 
