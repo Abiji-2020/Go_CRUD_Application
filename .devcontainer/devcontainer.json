@@ -3,7 +3,6 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "workspaceFolder": "/workspace",
   "forwardPorts": [8080, 6379],
   "extensions": ["golang.go"],
   "settings": {
