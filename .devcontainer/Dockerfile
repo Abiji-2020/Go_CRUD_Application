@@ -2,7 +2,7 @@
 FROM golang:latest
 
 # Install Redis server
-RUN apt-get update && apt-get install -y redis-server
+RUN apt-get update && apt-get install -y redis-server && apt-get install sudo
 
 # Set up workspace
 WORKDIR /workspace
