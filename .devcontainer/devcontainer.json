@@ -1,0 +1,23 @@
+{
+  "name": "Go Microservice Development Environment",
+  "image": "golang:1.21",
+  "forwardPorts": [
+    8080
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "go.formatTool": "goimports",
+        "go.lintTool": "golint",
+        "go.useLanguageServer": "on"
+      },
+      "extensions": [
+        "golang.go"
+      ]
+    }
+  },
+  "features":{
+    "ghcr.io/itsmechlark/features/redis-server:1": {}
+  },
+  "postCreateCommand": "go mod tidy"
+}
