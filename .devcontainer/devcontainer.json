@@ -6,7 +6,9 @@
     6379
   ],
   "features": {
-    "ghcr.io/itsmechlark/features/redis-server:1": {}
+    "ghcr.io/devcontainers/features/redis:1": {
+      "version": "7" // Choose a specific Redis version
+    }
   },
   "customizations": {
     "vscode": {
@@ -22,6 +24,10 @@
   },
   "postCreateCommand": "go mod tidy",
   "mounts": [
-    "source=/var/lib/redis,target=/data,type=volume"
+    {
+      "source": "redis-data",
+      "target": "/data",
+      "type": "volume"
+    }
   ]
 }
