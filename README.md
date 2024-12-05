@@ -1,12 +1,16 @@
-This repository contains a README file sample for Daytona Samples and the MIT License.
 
-It can be used as a template to create sample repositories that can be added into [Daytona](https://github.com/daytonaio/daytona).
 
-Once you finish your sample and it gets merged, you can open a PR in the Daytona repo and submit the sample into the [index file](https://github.com/daytonaio/daytona/blob/main/hack/samples/index.json).
+# Go CRUD APPLICATION (GO + REDIS)
 
-# Sample <LANGUAGE/FRAMEWORK>
+This project implements a CRUD (Create, Read, Update, Delete) microservice using Golang, Chi Router, and Redis as the database
 
-Sample description
+---
+
+## ✨Features
+
+- CRUD operations for managing resources.
+- Uses Redis as the database for storage.
+- Utilizes the Chi router for handling HTTP requests.
 
 ---
 
@@ -14,21 +18,18 @@ Sample description
 
 ### Open Using Daytona  
 
-1. **Install Daytona**: Follow the [Daytona installation guide](https://www.daytona.io/docs/installation/installation/).  
-2. **Create the Workspace**:  
+1. **Install Daytona**: Follow the [Daytona installation guide](https://www.daytona.io/docs/installation/installation/).
+2. **Fork the REPO** 
+3. **Create the Workspace**:  
    ```bash  
-   daytona create <SAMPLE_REPO_URL> 
+   daytona create https://github.com/<YOUR-USERNAME>/Go_CRUD_Application
    ```  
-
-... MORE STEPS IF NEEDED ...
-
-4. **Start the Application**:  
-   ```bash  
-   command to start the app
+4. **Run the Redis server**:
+5. ```bash
+   redis-server
    ```  
-
+6. **Run the application**
+   ```bash
+   go run main.go
+   ```
 ---
-
-## ✨ Features  
-
-List of sample features (e.g. realtime chat app, standardized development environment with devcontainers)
