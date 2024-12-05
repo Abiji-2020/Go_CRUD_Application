@@ -1,8 +1,12 @@
 {
   "name": "Go + Redis Dev Environment",
-  "dockerComposeFile": ["docker-compose.yml"],
-  "service": "app",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "workspaceFolder": "/workspace",
   "forwardPorts": [8080, 6379],
-  "extensions": ["golang.go"]
+  "extensions": ["golang.go"],
+  "settings": {
+    "go.useLanguageServer": true
+  }
 }
