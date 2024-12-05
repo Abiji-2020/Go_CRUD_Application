@@ -8,7 +8,9 @@ services:
       - .:/workspace
     ports:
       - "8080:8080"
-    command: ["tail", "-f", "/dev/null"]
+    depends_on:
+      - redis
+    command: ["tail", "-f", "/dev/null"] # Keeps the container running for debugging
 
   redis:
     image: redis:alpine
