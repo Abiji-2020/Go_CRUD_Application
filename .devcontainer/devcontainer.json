@@ -1,12 +1,9 @@
 {
-  "name": "Go Microservice Development Environment",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  "forwardPorts": [
-    8080,
-    6379
-  ],
+  "name": "Go + Redis Dev Environment",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [8080, 6379],
   "customizations": {
     "vscode": {
       "settings": {
