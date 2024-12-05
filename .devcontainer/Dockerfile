@@ -1,8 +1,8 @@
-# Use the official Go image as the base
-FROM golang:latest
+# Use Alpine as the base image
+FROM alpine:latest
 
-# Install Redis
-RUN apt-get update && apt-get install -y redis-server && apt-get clean
+# Install necessary packages: bash, curl, Redis, and Go
+RUN apk update && apk add --no-cache bash curl redis go
 
 # Expose Redis and application ports
 EXPOSE 6379 8080
@@ -10,5 +10,5 @@ EXPOSE 6379 8080
 # Set the working directory
 WORKDIR /workspace
 
-# Start Redis in the background and keep the container running
-CMD service redis-server start && tail -f /dev/null
+# Start Redis and keep the container running
+CMD ["sh", "-c", "redis-server --daemonize yes && tail -f /dev/null"]
