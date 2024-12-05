@@ -1,15 +1,12 @@
 {
   "name": "Go Microservice Development Environment",
-  "image": "golang:latest",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "forwardPorts": [
     8080,
     6379
   ],
-  "features": {
-    "ghcr.io/devcontainers/features/redis:1": {
-      "version": "7" // Choose a specific Redis version
-    }
-  },
   "customizations": {
     "vscode": {
       "settings": {
@@ -22,12 +19,5 @@
       ]
     }
   },
-  "postCreateCommand": "go mod tidy",
-  "mounts": [
-    {
-      "source": "redis-data",
-      "target": "/data",
-      "type": "volume"
-    }
-  ]
+  "postCreateCommand": "go mod tidy"
 }
