@@ -4,8 +4,15 @@
     "dockerfile": "Dockerfile"
   },
   "forwardPorts": [8080, 6379],
-  "extensions": ["golang.go"],
-  "settings": {
-    "go.useLanguageServer": true
-  }
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "go.useLanguageServer": true
+      },
+      "extensions": [
+        "golang.go"
+      ]
+    }
+  },
+  "postCreateCommand": "go mod tidy"
 }
