@@ -3,17 +3,5 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspace",
-  "forwardPorts": [8080, 6379],
-  "customizations": {
-    "vscode": {
-      "settings": {
-        "go.formatTool": "goimports",
-        "go.lintTool": "golint",
-        "go.useLanguageServer": true
-      },
-      "extensions": [
-        "golang.go"
-      ]
-    }
-  }
+  "forwardPorts": [8080, 6379]
 }
