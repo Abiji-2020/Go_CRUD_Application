@@ -1,8 +1,8 @@
-# Use Alpine as the base image
-FROM alpine:latest
+# Use the official Go image (Debian-based)
+FROM golang:latest
 
-# Install necessary packages: bash, curl, Redis, and Go
-RUN apk update && apk add --no-cache bash curl redis go
+# Install Redis
+RUN apt-get update && apt-get install -y redis-server && apt-get clean
 
 # Expose Redis and application ports
 EXPOSE 6379 8080
