@@ -13,6 +13,15 @@ This project implements a CRUD (Create, Read, Update, Delete) microservice using
 - Utilizes the Chi router for handling HTTP requests.
 
 ---
+## API Endpoints
+
+- `GET /resources`: Get all resources.
+- `GET /resources/{id}`: Get a resource by ID.
+- `POST /resources`: Create a new resource.
+- `PUT /resources/{id}`: Update a resource by ID.
+- `DELETE /resources/{id}`: Delete a resource by ID.
+
+---
 
 ## 🚀 Getting Started  
 
