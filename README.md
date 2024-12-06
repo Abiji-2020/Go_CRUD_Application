@@ -19,16 +19,16 @@ This project implements a CRUD (Create, Read, Update, Delete) microservice using
 ### Open Using Daytona  
 
 1. **Install Daytona**: Follow the [Daytona installation guide](https://www.daytona.io/docs/installation/installation/).
-2. **Fork the REPO** 
-3. **Create the Workspace**:  
+
+2. **Create the Workspace**:  
    ```bash  
-   daytona create https://github.com/<YOUR-USERNAME>/Go_CRUD_Application
+   daytona create https://github.com/Abiji-2020/Go_CRUD_Application.git
    ```  
-4. **Run the Redis server**:
-5. ```bash
+3. **Run the Redis server**:
+4. ```bash
    redis-server
    ```  
-6. **Run the application**
+5. **Run the application**
    ```bash
    go run main.go
    ```
