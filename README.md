@@ -15,11 +15,11 @@ This project implements a CRUD (Create, Read, Update, Delete) microservice using
 ---
 ## API Endpoints
 
-- `GET /resources`: Get all resources.
-- `GET /resources/{id}`: Get a resource by ID.
-- `POST /resources`: Create a new resource.
-- `PUT /resources/{id}`: Update a resource by ID.
-- `DELETE /resources/{id}`: Delete a resource by ID.
+- `GET /orders`: Get all Orders.
+- `GET /orders/{id}`: Get a Orders by ID.
+- `POST /orders`: Create a new Order.
+- `PUT /orders/{id}`: Update a Order by ID.
+- `DELETE /orders/{id}`: Delete a Order by ID.
 
 ---
 
@@ -37,8 +37,25 @@ This project implements a CRUD (Create, Read, Update, Delete) microservice using
 4. ```bash
    redis-server
    ```  
-5. **Run the application**
+5. **Run the application in  a new terminal**
    ```bash
    go run main.go
    ```
+   The application will run on `PORT : 3000`
 ---
+
+## Example Request 
+
+### Create an order
+
+```bash 
+curl --header "Content-Type: application/json" \
+     --request POST \
+     --data @example.json \
+     localhost:3000/orders
+```
+
+### List Orders
+```bash
+curl localhost:3000/orders
+```
