@@ -17,7 +17,7 @@ type App struct {
 
 func New(Config config) *App {
 	app := &App{
-		rdb:    redis.NewClient(&redis.Options{
+		rdb: redis.NewClient(&redis.Options{
 			Addr: Config.RedisAddress,
 		}),
 		Config: Config,
@@ -35,7 +35,7 @@ func (a *App) Start(ctx context.Context) error {
 	if err != nil {
 		return fmt.Errorf("failed to ping redis: %w", err)
 	}
-	fmt.Printf("Server is running on port: %d",a.Config.ServerPort)
+	fmt.Printf("Server is running on port: %d", a.Config.ServerPort)
 	ch := make(chan error, 1)
 	go func() {
 		err = server.ListenAndServe()
@@ -45,6 +45,9 @@ func (a *App) Start(ctx context.Context) error {
 		}
 		close(ch)
 	}()
+	if err := a.callHealthCheck(); err != nil {
+		return fmt.Errorf("health check failed %w", err)
+	}
 
 	select {
 	case err = <-ch:
@@ -55,5 +58,20 @@ func (a *App) Start(ctx context.Context) error {
 		return server.Shutdown(timeout)
 	}
 
+	return nil
+}
+
+func (a *App) callHealthCheck() error {
+	client := http.Client{Timeout: 2 * time.Second}
+	url := "http://localhost:3000/healthCheck"
+	resp, err := client.Get(url)
+	if err != nil {
+		return fmt.Errorf("failed to call healthcheck %w", err)
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("health check returned with status of %d", resp.StatusCode)
+	}
+	fmt.Println("Health Check Passed")
 	return nil
 }
