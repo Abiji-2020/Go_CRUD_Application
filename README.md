@@ -49,6 +49,35 @@ This project implements a CRUD (Create, Read, Update, Delete) microservice using
 
 ## POSTMAN type Requests
 
+
+### Create an order
+
+```bash
+POST http://localhost:3000/orders
+```
+Payload for the request:
+
+```json
+
+  {
+    "customer_id": "550e8400-e29b-41d4-a716-446655440000",
+    "line_items": [
+      {
+        "item_id": "123e4567-e89b-12d3-a456-426614174000",
+        "quantity": 2,
+        "price": 1000
+      },
+      {
+        "item_id": "123e4567-e89b-12d3-a456-426614174001",
+        "quantity": 1,
+        "price": 500
+      }
+    ]
+  }
+  
+```
+The reponse will be same with the status:`OK`
+
 ### Get All Orders
 
 ```bash
@@ -82,33 +111,6 @@ The request will return with the reponse of:
 }
 ```
 
-### Create an order
-
-```bash
-POST http://localhost:3000/orders
-```
-Payload for the request:
-
-```json
-{
-  {
-    "customer_id": "550e8400-e29b-41d4-a716-446655440000",
-    "line_items": [
-      {
-        "item_id": "123e4567-e89b-12d3-a456-426614174000",
-        "quantity": 2,
-        "price": 1000
-      },
-      {
-        "item_id": "123e4567-e89b-12d3-a456-426614174001",
-        "quantity": 1,
-        "price": 500
-      }
-    ]
-  }
-  
-```
-The reponse will be same with the status:`OK`
 
 ### To update the status of the order
 
