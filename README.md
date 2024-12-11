@@ -15,11 +15,11 @@ This project implements a CRUD (Create, Read, Update, Delete) microservice using
 ---
 ## API Endpoints
 
-- `GET /orders`: Get all Orders.
-- `GET /orders/{id}`: Get a Orders by ID.
+- `GET /orders`: List all Orders
+- `GET /orders/{id}`: Get an Order by ID.
 - `POST /orders`: Create a new Order.
-- `PUT /orders/{id}`: Update a Order by ID.
-- `DELETE /orders/{id}`: Delete a Order by ID.
+- `PUT /orders/{id}`: Update an Order by ID.
+- `DELETE /orders/{id}`: Delete an Order by ID.
 
 ---
 
@@ -44,7 +44,111 @@ This project implements a CRUD (Create, Read, Update, Delete) microservice using
    The application will run on `PORT : 3000`
 ---
 
-## Example Request 
+# Example Request 
+
+
+## POSTMAN type Requests
+
+### Get All Orders
+
+```bash
+GET http://localhost:3000/orders
+```
+
+The request will return with the reponse of: 
+```json
+{
+  "items": [
+    {
+      "order_id": 1.2470706902630818e+19,
+      "customer_id": "550e8400-e29b-41d4-a716-446655440000",
+      "line_items": [
+        {
+          "item_id": "123e4567-e89b-12d3-a456-426614174000",
+          "quantity": 2,
+          "price": 1000
+        },
+        {
+          "item_id": "123e4567-e89b-12d3-a456-426614174001",
+          "quantity": 1,
+          "price": 500
+        }
+      ],
+      "created_at": "2024-12-11T09:19:09.15246014Z",
+      "shipped_at": null,
+      "completed_at": null
+    }
+  ]
+}
+```
+
+### Create an order
+
+```bash
+POST http://localhost:3000/orders
+```
+Payload for the request:
+
+```json
+{
+  {
+    "order_id": 12345,
+    "customer_id": "550e8400-e29b-41d4-a716-446655440000",
+    "line_items": [
+      {
+        "item_id": "123e4567-e89b-12d3-a456-426614174000",
+        "quantity": 2,
+        "price": 1000
+      },
+      {
+        "item_id": "123e4567-e89b-12d3-a456-426614174001",
+        "quantity": 1,
+        "price": 500
+      }
+    ]
+  }
+  
+```
+The reponse will be same with the status:`OK`
+
+### To update the status of the order
+
+```bash
+PUT http://localhost:3000/orders/{id}
+```
+#### Payload to be sent:
+```json
+{
+    "status":"shipped"
+}
+```
+
+#### Response of the update:
+```json
+{
+  "order_id": 1234,
+  "customer_id": "550e8400-e29b-41d4-a716-446655440000",
+  "line_items": [
+    {
+      "item_id": "123e4567-e89b-12d3-a456-426614174000",
+      "quantity": 2,
+      "price": 1000
+    },
+    {
+      "item_id": "123e4567-e89b-12d3-a456-426614174001",
+      "quantity": 1,
+      "price": 500
+    }
+  ],
+  "created_at": "2024-12-11T09:40:33.534526754Z",
+  "shipped_at": "2024-12-11T10:01:24.974032869Z",
+  "completed_at": null
+}
+```
+
+---
+
+## cURL Request
 
 ### Create an order
 
@@ -59,3 +163,8 @@ curl --header "Content-Type: application/json" \
 ```bash
 curl localhost:3000/orders
 ```
+
+---
+
+
+
