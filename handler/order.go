@@ -133,12 +133,15 @@ func (h *Order) UpdateBYID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	idParam := chi.URLParam(r, "id")
+	re := regexp.MustCompile(`/orders/(\d+)`) // Matches numbers after /orders/
+	match := re.FindStringSubmatch(r.URL.Path)
+	idParam := match[1]
+
 	const base = 10
 	const bitSize = 64
 	orderId, err := strconv.ParseUint(idParam, base, bitSize)
 	if err != nil {
-		writeError(w, http.StatusBadRequest, "Invalid order ID")
+		writeError(w, http.StatusBadRequest, fmt.Sprintf("Invalid order ID %v", err))
 		return
 	}
 
@@ -185,7 +188,6 @@ func (h *Order) UpdateBYID(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, "Failed to encode response")
 	}
 }
-
 func (h *Order) DeleteByID(w http.ResponseWriter, r *http.Request) {
 	idParam := chi.URLParam(r, "id")
 	const base = 10
