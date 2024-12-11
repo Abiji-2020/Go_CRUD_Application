@@ -62,16 +62,19 @@ func (a *App) Start(ctx context.Context) error {
 }
 
 func (a *App) callHealthCheck() error {
-	client := http.Client{Timeout: 2 * time.Second}
-	url := "http://localhost:3000/healthCheck"
-	resp, err := client.Get(url)
-	if err != nil {
-		return fmt.Errorf("failed to call healthcheck %w", err)
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("health check returned with status of %d", resp.StatusCode)
-	}
-	fmt.Println("Health Check Passed")
-	return nil
+    client := http.Client{Timeout: 2 * time.Second}
+    url := fmt.Sprintf("http://localhost:%d/healthCheck", a.Config.ServerPort)
+
+    for i := 0; i < 3; i++ {
+        resp, err := client.Get(url)
+        if err == nil && resp.StatusCode == http.StatusOK {
+            fmt.Println("Health Check Passed")
+            return nil
+        }
+        if resp != nil {
+            resp.Body.Close()
+        }
+        time.Sleep(1 * time.Second) // Wait before retrying
+    }
+    return fmt.Errorf("health check failed after retries")
 }
