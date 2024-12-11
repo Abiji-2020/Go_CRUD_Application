@@ -92,7 +92,6 @@ Payload for the request:
 ```json
 {
   {
-    "order_id": 12345,
     "customer_id": "550e8400-e29b-41d4-a716-446655440000",
     "line_items": [
       {
@@ -144,6 +143,12 @@ PUT http://localhost:3000/orders/{id}
   "shipped_at": "2024-12-11T10:01:24.974032869Z",
   "completed_at": null
 }
+```
+
+### To Delete an Order
+
+```bash
+DELETE http://localhost:3000/orders/{id}
 ```
 
 ---
